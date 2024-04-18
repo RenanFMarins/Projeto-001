@@ -1,0 +1,26 @@
+<div class="coworking coworking-list-item">
+    <a class="coworking-read-more button button-dark button-full-width" href="/coworking/3/">
+        <div class="coworking-cover">
+            <img src="https://via.placeholder.com/1280x720.png/269fe6" alt="Temporário">
+        </div>
+        <div class="coworking-location">
+            <a>
+                <h2>{{coworking.cities}}, {{coworking.country}}</h2>
+            </a>
+        </div>
+        <div class="coworking-author-item">
+            <a>
+                <span>Café da manhã</span>
+            </a>
+        </div>
+        <div class="coworking-author-item">
+            <i class="fas fa-calendar-alt"></i>
+            <span>{{ coworking.created_at|date:"d/m/Y" }} às {{ coworking.created_at|date:"H:i" }} -
+                  {{ coworking.created_at|date:"d/m/Y" }} às {{ coworking.created_at|date:"H:i" }}
+            </span>
+        </div>
+        <div class="coworking-meta coworking-preparation">
+            <div>R$ 15/h</div>
+        </div>
+    </a>
+</div>
