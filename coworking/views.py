@@ -11,4 +11,5 @@ def home(request):
 def coworking(request, id):
     return render(request, 'coworking/pages/coworking-view.html', context={
         'coworking': make_coworking(),
+        'is_detail_page': True,
     })

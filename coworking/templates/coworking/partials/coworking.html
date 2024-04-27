@@ -1,8 +1,17 @@
 <div class="coworking coworking-list-item">
     <a class="coworking-read-more button button-dark button-full-width" href="/coworking/3/">
         <div class="coworking-cover">
-            <img src="https://via.placeholder.com/1280x720.png/269fe6" alt="Temporário">
+            <a href="{% url 'coworkings-coworking' coworking.id %}">
+                <img src="{{ coworking.cover.url }}" alt="Temporário">
+            </a>
         </div>
+        {% comment %} <div class="coworking-title-container">z
+            <h2 class="recipe-title">
+                <a href="{% url 'coworkings-coworking' coworking.id %}">
+                    {{ coworking.title }}
+                </a>
+            </h2>
+        </div> {% endcomment %}
         <div class="coworking-location">
             <a>
                 <h2>{{coworking.cities}}, {{coworking.country}}</h2>
@@ -10,7 +19,7 @@
         </div>
         <div class="coworking-author-item">
             <a>
-                <span>Café da manhã</span>
+                <span>Auditório, cozinha e wi-fi</span>
             </a>
         </div>
         <div class="coworking-author-item">
@@ -22,5 +31,16 @@
         <div class="coworking-meta coworking-preparation">
             <div>R$ 15/h</div>
         </div>
+        
+        {% comment %} <footer class="coworking-footer">
+            <a class="coworking-read-more button button-dark button-full-width" href="/coworking/3/">
+                <i class="fas fa-eye"></i>
+                <span>ver mais...</span>
+            </a>
+        </footer>
+
+        <div class="preparation-steps">
+            {{ recipe.preparation_steps|linebreaksbr }}
+        </div> {% endcomment %}
     </a>
 </div>
