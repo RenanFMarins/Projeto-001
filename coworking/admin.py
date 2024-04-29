@@ -1,3 +1,14 @@
 from django.contrib import admin
+from .models import Category, Coworking
 
-# Register your models here.
+
+class CategoryAdmin(admin.ModelAdmin):
+    ...
+
+
+@admin.register(Coworking)
+class CoworkingAdmin(admin.ModelAdmin):
+    ...
+
+
+admin.site.register(Category, CategoryAdmin)

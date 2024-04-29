@@ -1,9 +1,11 @@
 from django.urls import path
 
 from . import views
-pp_name = 'coworkings'
+app_name = 'coworkings'
 
 urlpatterns = [
-    path('', views.home, name="coworkings-home"),
-    path('coworking/<int:id>/', views.coworking, name="coworkings-coworking"),
+    path('', views.home, name="home"),
+    path('coworking/category/<int:category_id>/', views.category,
+         name="category"),
+    path('coworking/<int:id>/', views.coworking, name="coworking"),
 ]

@@ -1,27 +1,37 @@
 <div class="coworking coworking-list-item">
     <a class="coworking-read-more button button-dark button-full-width" href="/coworking/3/">
-        <div class="coworking-cover">
-            <a href="{% url 'coworkings-coworking' coworking.id %}">
-                <img src="{{ coworking.cover.url }}" alt="Temporário">
-            </a>
-        </div>
-        {% comment %} <div class="coworking-title-container">z
-            <h2 class="recipe-title">
-                <a href="{% url 'coworkings-coworking' coworking.id %}">
-                    {{ coworking.title }}
+        {% if coworking.cover %}
+            <div class="coworking-cover">
+                <a href="{% url 'coworkings:coworking' coworking.id %}">
+                    <img src="{{ coworking.cover.url }}" alt="Temporário">
                 </a>
-            </h2>
-        </div> {% endcomment %}
+            </div>
+        {% endif %}
+        {% if coworking.author is not None %}
+            <span class="coworking-author-item">
+                <i class="fas fa-user"></i>
+                {% if coworking.author.first_name %}
+                    {{ coworking.author.first_name }} {{ coworking.author.last_name }}
+                {% else %}
+                    {{ coworking.author.username }}
+                {% endif %}
+            </span>
+        {% endif %}
         <div class="coworking-location">
             <a>
                 <h2>{{coworking.cities}}, {{coworking.country}}</h2>
             </a>
         </div>
-        <div class="coworking-author-item">
-            <a>
-                <span>Auditório, cozinha e wi-fi</span>
-            </a>
-        </div>
+        {% if coworking.category is not None %}
+            <span class="coworking-author-item">
+                <a href="{% url 'coworkings:category' coworking.category.id %}">
+                    <i class="fas fa-layer-group"></i>
+                    <span>{{ coworking.category.name }}</span>
+                </a>
+            </span>
+        {% else %}
+            <span>Categoria não disponível</span>
+        {% endif %}
         <div class="coworking-author-item">
             <i class="fas fa-calendar-alt"></i>
             <span>{{ coworking.created_at|date:"d/m/Y" }} às {{ coworking.created_at|date:"H:i" }} -
@@ -37,10 +47,17 @@
                 <i class="fas fa-eye"></i>
                 <span>ver mais...</span>
             </a>
-        </footer>
+        </footer> {% endcomment %}
 
-        <div class="preparation-steps">
-            {{ recipe.preparation_steps|linebreaksbr }}
-        </div> {% endcomment %}
+        {% if is_detail_page is True %}
+            <div class="preparation-steps">
+                {{ coworking.description|linebreaksbr }}
+                {% if coworking.description_is_html is True %}
+                    {{ coworking.description|safe }}
+                {% else %}
+                    {{ coworking.description|linebreaksbr }}
+                {% endif %}
+            </div>
+        {% endif %}
     </a>
 </div>
